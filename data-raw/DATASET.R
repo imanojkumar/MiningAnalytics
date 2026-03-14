@@ -33,3 +33,68 @@ kpis <- tribble(
 
 write_csv(kpis, "data-raw/kpi_dictionary.csv")
 
+
+
+library(dplyr)
+
+generate_kpis <- function(prefix, category, subcategory, start, n) {
+  
+  tibble(
+    KPI_ID = sprintf("%s_%03d", prefix, start:(start+n-1)),
+    KPI_NAME = paste(category, "Metric", start:(start+n-1)),
+    CATEGORY = category,
+    SUBCATEGORY = subcategory,
+    MINING_METHOD = "Both",
+    COMMODITY = "All",
+    REGION = "Global",
+    FORMULA = NA,
+    UNIT = NA,
+    ESG_DIMENSION = NA,
+    SDG_LINK = NA,
+    R_FUNCTION = NA,
+    DESCRIPTION = paste("Generated KPI for", category),
+    SOURCE = "MiningAnalytics Framework",
+    BENCHMARK_GLOBAL = NA,
+    BENCHMARK_INDIA = NA,
+    DATA_SOURCE = NA,
+    FREQUENCY = NA
+  )
+}
+
+
+asset_kpis <- generate_kpis("KPI_A", "Asset", "Equipment", 3, 33)
+production_kpis <- generate_kpis("KPI_P", "Production", "Operations", 2, 39)
+ob_kpis <- generate_kpis("KPI_OB", "Overburden", "Waste", 2, 24)
+water_kpis <- generate_kpis("KPI_W", "Water", "Consumption", 2, 19)
+stockyard_kpis <- generate_kpis("KPI_S", "Stockyard", "Handling", 1, 20)
+logistics_kpis <- generate_kpis("KPI_L", "Logistics", "Transport", 1, 35)
+energy_kpis <- generate_kpis("KPI_E", "Energy", "Fuel", 1, 25)
+environment_kpis <- generate_kpis("KPI_ENV", "Environment", "Emissions", 1, 35)
+safety_kpis <- generate_kpis("KPI_SAF", "Safety", "Health", 1, 30)
+land_kpis <- generate_kpis("KPI_LAND", "Land", "Rehabilitation", 1, 20)
+quality_kpis <- generate_kpis("KPI_Q", "Quality", "Processing", 1, 20)
+governance_kpis <- generate_kpis("KPI_G", "Governance", "Compliance", 1, 25)
+supplychain_kpis <- generate_kpis("KPI_SC", "SupplyChain", "Integration", 1, 20)
+
+
+all_kpis <- bind_rows(
+  kpis,
+  asset_kpis,
+  production_kpis,
+  ob_kpis,
+  water_kpis,
+  stockyard_kpis,
+  logistics_kpis,
+  energy_kpis,
+  environment_kpis,
+  safety_kpis,
+  land_kpis,
+  quality_kpis,
+  governance_kpis,
+  supplychain_kpis
+)
+
+
+write_csv(all_kpis, "data-raw/kpi_dictionary.csv")
+usethis::use_data(all_kpis, overwrite = TRUE)
+

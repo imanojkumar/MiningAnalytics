@@ -15,7 +15,7 @@ get_kpis <- function(category = NULL,
                      region = NULL,
                      mining_method = NULL) {
   
-  data <- kpis
+  data <- all_kpis
   
   if (!is.null(category)) {
     data <- data[data$CATEGORY == category, ]
