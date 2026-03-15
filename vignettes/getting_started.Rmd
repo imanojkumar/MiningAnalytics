@@ -1,0 +1,12 @@
+---
+title: "MiningAnalytics"
+output: html_document
+---
+
+# Getting Started with MiningAnalytics
+
+Examples:
+
+  retrieving KPIs
+  calculating KPIs
+  building mine dashboard

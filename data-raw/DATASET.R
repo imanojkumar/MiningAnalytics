@@ -1,6 +1,13 @@
+# MiningAnalytics KPI Ontology Builder
+# This script generates the complete KPI ontology (~350 KPIs)
+
 library(tidyverse)
 
-kpis <- tribble(
+# ------------------------------------------------------------------
+# 1. Core KPI Definitions
+# ------------------------------------------------------------------
+
+kpis_core <- tribble(
   ~KPI_ID, ~KPI_NAME, ~CATEGORY, ~SUBCATEGORY, ~MINING_METHOD, ~COMMODITY, ~REGION,
   ~FORMULA, ~UNIT, ~ESG_DIMENSION, ~SDG_LINK, ~R_FUNCTION, ~DESCRIPTION, ~SOURCE,
   ~BENCHMARK_GLOBAL, ~BENCHMARK_INDIA, ~DATA_SOURCE, ~FREQUENCY,
@@ -31,11 +38,9 @@ kpis <- tribble(
   1.2,1.8,"Water Monitoring","Monthly"
 )
 
-write_csv(kpis, "data-raw/kpi_dictionary.csv")
-
-
-
-library(dplyr)
+# ------------------------------------------------------------------
+# 2. KPI Generator Function
+# ------------------------------------------------------------------
 
 generate_kpis <- function(prefix, category, subcategory, start, n) {
   
@@ -47,43 +52,51 @@ generate_kpis <- function(prefix, category, subcategory, start, n) {
     MINING_METHOD = "Both",
     COMMODITY = "All",
     REGION = "Global",
-    FORMULA = NA,
-    UNIT = NA,
-    ESG_DIMENSION = NA,
-    SDG_LINK = NA,
-    R_FUNCTION = NA,
+    FORMULA = NA_character_,
+    UNIT = NA_character_,
+    ESG_DIMENSION = NA_character_,
+    SDG_LINK = NA_character_,
+    R_FUNCTION = NA_character_,
     DESCRIPTION = paste("Generated KPI for", category),
     SOURCE = "MiningAnalytics Framework",
-    BENCHMARK_GLOBAL = NA,
-    BENCHMARK_INDIA = NA,
-    DATA_SOURCE = NA,
-    FREQUENCY = NA
+    BENCHMARK_GLOBAL = NA_real_,
+    BENCHMARK_INDIA = NA_real_,
+    DATA_SOURCE = NA_character_,
+    FREQUENCY = NA_character_
   )
 }
 
+# ------------------------------------------------------------------
+# 3. Generate KPI Blocks
+# ------------------------------------------------------------------
 
-asset_kpis <- generate_kpis("KPI_A", "Asset", "Equipment", 3, 33)
-production_kpis <- generate_kpis("KPI_P", "Production", "Operations", 2, 39)
-ob_kpis <- generate_kpis("KPI_OB", "Overburden", "Waste", 2, 24)
-water_kpis <- generate_kpis("KPI_W", "Water", "Consumption", 2, 19)
-stockyard_kpis <- generate_kpis("KPI_S", "Stockyard", "Handling", 1, 20)
-logistics_kpis <- generate_kpis("KPI_L", "Logistics", "Transport", 1, 35)
-energy_kpis <- generate_kpis("KPI_E", "Energy", "Fuel", 1, 25)
+asset_kpis       <- generate_kpis("KPI_A", "Asset", "Equipment", 3, 33)
+production_kpis  <- generate_kpis("KPI_P", "Production", "Operations", 2, 39)
+ob_kpis          <- generate_kpis("KPI_OB", "Overburden", "Waste", 2, 24)
+water_kpis       <- generate_kpis("KPI_W", "Water", "Consumption", 2, 19)
+
+logistics_kpis   <- generate_kpis("KPI_L", "Logistics", "Transport", 1, 35)
+energy_kpis      <- generate_kpis("KPI_E", "Energy", "Fuel", 1, 25)
+
 environment_kpis <- generate_kpis("KPI_ENV", "Environment", "Emissions", 1, 35)
-safety_kpis <- generate_kpis("KPI_SAF", "Safety", "Health", 1, 30)
-land_kpis <- generate_kpis("KPI_LAND", "Land", "Rehabilitation", 1, 20)
-quality_kpis <- generate_kpis("KPI_Q", "Quality", "Processing", 1, 20)
-governance_kpis <- generate_kpis("KPI_G", "Governance", "Compliance", 1, 25)
+safety_kpis      <- generate_kpis("KPI_SAF", "Safety", "Health", 1, 30)
+
+land_kpis        <- generate_kpis("KPI_LAND", "Land", "Rehabilitation", 1, 20)
+quality_kpis     <- generate_kpis("KPI_Q", "Quality", "Processing", 1, 20)
+
+governance_kpis  <- generate_kpis("KPI_G", "Governance", "Compliance", 1, 25)
 supplychain_kpis <- generate_kpis("KPI_SC", "SupplyChain", "Integration", 1, 20)
 
+# ------------------------------------------------------------------
+# 4. Combine All KPI Blocks
+# ------------------------------------------------------------------
 
-all_kpis <- bind_rows(
-  kpis,
+kpis <- bind_rows(
+  kpis_core,
   asset_kpis,
   production_kpis,
   ob_kpis,
   water_kpis,
-  stockyard_kpis,
   logistics_kpis,
   energy_kpis,
   environment_kpis,
@@ -94,7 +107,21 @@ all_kpis <- bind_rows(
   supplychain_kpis
 )
 
+# ------------------------------------------------------------------
+# 5. Export CSV Dictionary (Human-readable)
+# ------------------------------------------------------------------
 
-write_csv(all_kpis, "data-raw/kpi_dictionary.csv")
-usethis::use_data(all_kpis, overwrite = TRUE)
+write_csv(kpis, "data-raw/kpi_dictionary.csv")
 
+# ------------------------------------------------------------------
+# 6. Store Dataset in Package
+# ------------------------------------------------------------------
+
+usethis::use_data(kpis, overwrite = TRUE)
+
+# ------------------------------------------------------------------
+# 7. Print Summary
+# ------------------------------------------------------------------
+
+cat("\nMiningAnalytics KPI Ontology Generated\n")
+cat("Total KPIs:", nrow(kpis), "\n")

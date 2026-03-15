@@ -1,9 +1,9 @@
 Package: MiningAnalytics
-Title: What the Package Does (One Line, Title Case)
+Title: Mining Industry Analytics and KPI Framework
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Manoj", "Kumar", , "mkumar75@gmail.com", role = c("aut", "cre"))
+Description: Provides a mining industry KPI ontology (~330 KPIs) together with tools for calculating mining performance indicators, benchmarking mine operations, evaluating ESG performance, and generating mine performance dashboards.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

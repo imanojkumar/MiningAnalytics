@@ -1,0 +1,67 @@
+---
+title: "Mine Performance Report"
+format: html
+---
+
+```{r}
+library(MiningAnalytics)
+```
+
+# Mine Performance Summary
+
+```{r}
+dashboard <- mine_dashboard(
+  production = 105000,
+  plan = 100000,
+  energy = 450000,
+  water = 22000,
+  co2 = 18000,
+  hours_worked = 250000,
+  lost_time_injuries = 2
+)
+
+dashboard
+
+```
+
+# Production Performance
+
+```{r}
+dashboard$Production
+
+```
+
+# Energy Performance
+
+```{r}
+dashboard$Energy
+
+```
+
+# Water Performance
+
+```{r}
+dashboard$Water
+
+```
+
+# Environmental Performance
+
+```{r}
+dashboard$Environment
+
+```
+
+# Safety Performance
+
+```{r}
+dashboard$Safety
+
+```
+
+# ESG Score
+
+```{r}
+dashboard$ESG
+
+```

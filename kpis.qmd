@@ -1,0 +1,13 @@
+---
+title: "kpis"
+format: html
+---
+
+# KPI Dictionary
+
+```{r}
+library(MiningAnalytics)
+
+head(get_kpis())
+```
+

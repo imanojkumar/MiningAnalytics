@@ -1,0 +1,19 @@
+---
+title: "analytics"
+format: html
+---
+
+# Mine Analytics Example
+
+```{r}
+mine_dashboard(
+  production = 100000,
+  plan = 95000,
+  energy = 420000,
+  water = 21000,
+  co2 = 17500,
+  hours_worked = 240000,
+  lost_time_injuries = 1
+)
+```
+

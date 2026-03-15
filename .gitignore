@@ -7,3 +7,6 @@
 .quarto
 *.tar.gz
 *.Rcheck
+
+/.quarto/
+**/*.quarto_ipynb

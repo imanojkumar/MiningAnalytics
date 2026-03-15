@@ -1,0 +1,10 @@
+# MiningAnalytics
+
+MiningAnalytics is an R package for mining performance analytics.
+
+Features:
+
+- KPI ontology (~330 KPIs)
+- ESG mining metrics
+- benchmark comparison
+- mine performance dashboards

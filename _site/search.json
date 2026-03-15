@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "reports/mine_report.html",
+    "href": "reports/mine_report.html",
+    "title": "Mine Performance Report",
+    "section": "",
+    "text": "library(MiningAnalytics)\n\n\nMine Performance Summary\n\ndashboard &lt;- mine_dashboard(\n  production = 105000,\n  plan = 100000,\n  energy = 450000,\n  water = 22000,\n  co2 = 18000,\n  hours_worked = 250000,\n  lost_time_injuries = 2\n)\n\ndashboard\n\n$Production\n$Production$Production\n[1] 105000\n\n$Production$Plan\n[1] 1e+05\n\n$Production$Attainment\n[1] 1.05\n\n\n$Energy\n$Energy$EnergyConsumed\n[1] 450000\n\n$Energy$EnergyIntensity\n[1] 4.285714\n\n\n$Water\n$Water$WaterUsed\n[1] 22000\n\n$Water$WaterIntensity\n[1] 0.2095238\n\n\n$Environment\n$Environment$CO2\n[1] 18000\n\n$Environment$CarbonIntensity\n[1] 0.1714286\n\n\n$Safety\n$Safety$LTIs\n[1] 2\n\n$Safety$LTIFR\n[1] 8\n\n\n$ESG\n$ESG$Environmental\n[1] 0.2142857\n\n$ESG$Social\n[1] 0.1111111\n\n$ESG$Governance\n[1] 1.05\n\n$ESG$ESG_Score\n[1] 0.4340476\n\n\n\n\nProduction Performance\n\ndashboard$Production\n\n$Production\n[1] 105000\n\n$Plan\n[1] 1e+05\n\n$Attainment\n[1] 1.05\n\n\n\n\nEnergy Performance\n\ndashboard$Energy\n\n$EnergyConsumed\n[1] 450000\n\n$EnergyIntensity\n[1] 4.285714\n\n\n\n\nWater Performance\n\ndashboard$Water\n\n$WaterUsed\n[1] 22000\n\n$WaterIntensity\n[1] 0.2095238\n\n\n\n\nEnvironmental Performance\n\ndashboard$Environment\n\n$CO2\n[1] 18000\n\n$CarbonIntensity\n[1] 0.1714286\n\n\n\n\nSafety Performance\n\ndashboard$Safety\n\n$LTIs\n[1] 2\n\n$LTIFR\n[1] 8\n\n\n\n\nESG Score\n\ndashboard$ESG\n\n$Environmental\n[1] 0.2142857\n\n$Social\n[1] 0.1111111\n\n$Governance\n[1] 1.05\n\n$ESG_Score\n[1] 0.4340476"
+  }
+]
